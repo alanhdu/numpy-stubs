@@ -25,7 +25,7 @@ def get_test_cases(directory):
                         continue
                     if py_version_number == 3 and skip_py3:
                         continue
-                    py2_arg = ['--py2'] if py_version_number == 2 else []
+                    py2_arg = ["--py2"] if py_version_number == 2 else []
 
                     yield pytest.param(
                         fullpath,
@@ -38,7 +38,7 @@ def get_test_cases(directory):
 @pytest.mark.parametrize("path,py2_arg", get_test_cases(PASS_DIR))
 def test_success(path, py2_arg):
     stdout, stderr, exitcode = api.run([path] + py2_arg)
-    assert stdout == ''
+    assert stdout == ""
     assert exitcode == 0
 
 
@@ -71,7 +71,7 @@ def test_fail(path, py2_arg):
             assert lineno in errors, f'Extra error "{marker}"'
             assert marker in errors[lineno]
         else:
-            pytest.fail(f'Error {repr(errors[lineno])} not found')
+            pytest.fail(f"Error {repr(errors[lineno])} not found")
 
 
 @pytest.mark.parametrize("path,py2_arg", get_test_cases(REVEAL_DIR))
